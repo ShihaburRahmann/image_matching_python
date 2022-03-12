@@ -12,7 +12,7 @@ for url in web_urls:	#loop to open the URLs and obtain only img tags from the ht
 	html = page.read()
 	html = html.decode("utf-8")
 
-	img_tags.extend(re.findall("<img.*>", html, re.IGNORECASE)) #adds all img tags of all websites to this list, regex used to find img tags
+	img_tags.extend(re.findall("<img.*>", html, re.IGNORECASE)) #adds all img tags of all webpages to this list, regex used to find img tags
 
 
 for img in img_tags:
@@ -20,11 +20,11 @@ for img in img_tags:
 
 	img_src = re.search('src*([^\s]+)', img, re.IGNORECASE)	#obtain only the src part from the img tag
 	if(img_src is not None):
-		img_src = img_src.group(0)
+		img_src = img_src.group(0)							#obtain string from MatchObject
 
 	img_alt = re.search('alt.*"', img, re.IGNORECASE)		#obtain only the alt part from the img tag
 	if(img_alt is not None):
-		img_alt = img_alt.group(0)
+		img_alt = img_alt.group(0)							#obtain string from MatchObject
 
 	for search_tag in search_tags:
 		if(img_src is not None and search_tag in img_src):
